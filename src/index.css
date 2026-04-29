@@ -6,8 +6,8 @@
 
 html, body, #root {
   height: 100%;
-  background: #080C14;
-  color: #E8EDF5;
+  background: #F0F4F8;
+  color: #0F172A;
   font-family: 'JetBrains Mono', monospace;
   -webkit-font-smoothing: antialiased;
 }
@@ -21,6 +21,6 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='number'] { -moz-appearance: textfield; }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #080C14; }
-::-webkit-scrollbar-thumb { background: #1A2235; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #2A3A55; }
+::-webkit-scrollbar-track { background: #F0F4F8; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }

@@ -66,8 +66,8 @@ function HourlyCell({ project, cell, onChange }) {
   const rev = computeRevenue(project, cell)
 
   const inp = {
-    background: 'rgba(255,255,255,0.04)',
-    border: `1px solid ${C.borderLight}`,
+    background: '#F8FAFC',
+    border: `1px solid ${C.border}`,
     borderRadius: 3,
     color: C.text,
     fontFamily: FONT.mono,
@@ -77,8 +77,8 @@ function HourlyCell({ project, cell, onChange }) {
     textAlign: 'right',
     outline: 'none',
   }
-  const focusInp = (e) => { e.target.style.borderColor = C.gold; e.target.style.background = C.goldBg }
-  const blurInp  = (e) => { e.target.style.borderColor = C.borderLight; e.target.style.background = 'rgba(255,255,255,0.04)' }
+  const focusInp = (e) => { e.target.style.borderColor = C.gold; e.target.style.background = '#FFFFFF' }
+  const blurInp  = (e) => { e.target.style.borderColor = C.border; e.target.style.background = '#F8FAFC' }
 
   const row = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }
   const lbl = { fontSize: 10, color: C.textMuted, letterSpacing: '0.06em', minWidth: 52 }
@@ -151,8 +151,8 @@ function DirectCell({ project, cell, onChange }) {
   const rev = cell?.revenue   ?? 0
 
   const inp = {
-    background: 'rgba(255,255,255,0.04)',
-    border: `1px solid ${C.borderLight}`,
+    background: '#F8FAFC',
+    border: `1px solid ${C.border}`,
     borderRadius: 3,
     color: C.text,
     fontFamily: FONT.mono,
@@ -162,15 +162,15 @@ function DirectCell({ project, cell, onChange }) {
     textAlign: 'right',
     outline: 'none',
   }
-  const focusInp = (e) => { e.target.style.borderColor = C.gold; e.target.style.background = C.goldBg }
-  const blurInp  = (e) => { e.target.style.borderColor = C.borderLight; e.target.style.background = 'rgba(255,255,255,0.04)' }
+  const focusInp = (e) => { e.target.style.borderColor = C.gold; e.target.style.background = '#FFFFFF' }
+  const blurInp  = (e) => { e.target.style.borderColor = C.border; e.target.style.background = '#F8FAFC' }
   const row = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }
   const lbl = { fontSize: 10, color: C.textMuted, letterSpacing: '0.06em', minWidth: 52 }
 
   return (
     <div style={{
       height: ROW_HEIGHT,
-      background: C.bg,
+      background: C.surface,
       borderRight: `1px solid ${C.border}`,
       padding: '10px 14px',
       display: 'flex',
