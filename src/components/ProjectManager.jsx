@@ -14,8 +14,8 @@ function ProjectForm({ initial, onSave, onCancel }) {
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }))
 
   const inp = {
-    background: 'rgba(255,255,255,0.04)',
-    border: `1px solid ${C.borderLight}`,
+    background: '#F8FAFC',
+    border: `1px solid ${C.border}`,
     borderRadius: 4,
     color: C.text,
     fontFamily: FONT.mono,
@@ -24,8 +24,8 @@ function ProjectForm({ initial, onSave, onCancel }) {
     width: '100%',
     outline: 'none',
   }
-  const focus = e => { e.target.style.borderColor = C.gold }
-  const blur  = e => { e.target.style.borderColor = C.borderLight }
+  const focus = e => { e.target.style.borderColor = C.gold; e.target.style.background = '#FFFFFF' }
+  const blur  = e => { e.target.style.borderColor = C.border; e.target.style.background = '#F8FAFC' }
   const lbl   = { fontSize: 10, color: C.textMuted, letterSpacing: '0.1em', display: 'block', marginBottom: 5 }
 
   function handleSave() {

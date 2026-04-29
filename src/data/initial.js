@@ -28,14 +28,34 @@ export function nextMonthKey(months) {
 
 export const INITIAL_PROJECTS = [
   {
-    id: 'gifthealth',
-    name: 'GiftHealth',
+    id: 'gifthealth_mo',
+    name: 'GiftHealth MO',
     tag: 'CX',
-    geo: 'MO / SA / Lagos',
-    color: '#F5A623',
-    rate: 25.00,          // blended avg across MO ($35), SA ($15), Lagos ($14)
+    geo: 'Missouri (US)',
+    color: '#F59E0B',
+    rate: 35.00,
+    otMultiplier: 1.20,   // $42/hr OT per invoice
+    billingMode: 'hourly',
+  },
+  {
+    id: 'gifthealth_sa',
+    name: 'GiftHealth SA',
+    tag: 'CX',
+    geo: 'South Africa',
+    color: '#D97706',
+    rate: 15.00,
+    otMultiplier: 1.18,   // $17.70/$14.75 ≈ 1.20x per invoice
+    billingMode: 'hourly',
+  },
+  {
+    id: 'gifthealth_lagos',
+    name: 'GiftHealth Lagos',
+    tag: 'CX',
+    geo: 'Lagos',
+    color: '#92400E',
+    rate: 14.00,
     otMultiplier: 1.20,
-    billingMode: 'direct', // complex multi-geo rates — enter revenue directly
+    billingMode: 'hourly',
   },
   {
     id: 'almedia',
@@ -147,13 +167,42 @@ export const INITIAL_PROJECTS = [
 // revenue in locked cells = actual invoiced USD
 
 export const INITIAL_CELLS = {
-  // ── GiftHealth (direct billing) ───────────────────────────────────────────
-  'gifthealth_2026-01': { headcount: 433, revenue: 850000 },
-  'gifthealth_2026-02': { headcount: 444, revenue: 954104 },
-  'gifthealth_2026-03': { headcount: 444, revenue: 967526 },
-  'gifthealth_2026-04': { headcount: 444, revenue: 920000 },
-  'gifthealth_2026-05': { headcount: 444, revenue: 920000 },
-  'gifthealth_2026-06': { headcount: 444, revenue: 920000 },
+  // ── GiftHealth MO ($35/hr) ─────────────────────────────────────────────────
+  // Billable HC: 175 agents | Actual HC: 134 agents + 11 TLs
+  // Mar invoice: Wave 1&2 (75 agents 12,000 hrs) + Wave 3 (26 agents 1,040 hrs)
+  //              + TLs W1&2 (7×160) + TLs W3 (2×40) + 299 OT hrs @ $42
+  // Revenue stored directly for locked months; forecast uses HC × hrs/HC × $35
+  'gifthealth_mo_2026-01': { headcount: 134, totalHours: 12823, otHours: 0,   revenue: 448810 },
+  'gifthealth_mo_2026-02': { headcount: 134, totalHours: 14400, otHours: 0,   revenue: 503767 },
+  'gifthealth_mo_2026-03': { headcount: 134, totalHours: 14610, otHours: 299, revenue: 510958 },
+  // Forecast: 134 actual HC × 110 hrs/HC × $35 ≈ $514,900/month
+  'gifthealth_mo_2026-04': { headcount: 134, hoursPerHead: 110, otHours: 0 },
+  'gifthealth_mo_2026-05': { headcount: 134, hoursPerHead: 110, otHours: 0 },
+  'gifthealth_mo_2026-06': { headcount: 134, hoursPerHead: 110, otHours: 0 },
+
+  // ── GiftHealth SA ($15/hr) ─────────────────────────────────────────────────
+  // Billable HC: 164 agents | Actual HC: 178 agents + 12 TLs
+  // Includes both Lily Project (SA) and Gastro Project (combined SA team)
+  // Mar invoice: Lily SA (13,600 + 1,440 TL hrs) + Gastro (~10,240 hrs) + 839 OT
+  'gifthealth_sa_2026-01': { headcount: 178, totalHours: 22533, otHours: 0,   revenue: 337450 },
+  'gifthealth_sa_2026-02': { headcount: 178, totalHours: 25267, otHours: 0,   revenue: 378779 },
+  'gifthealth_sa_2026-03': { headcount: 178, totalHours: 25623, otHours: 839, revenue: 384338 },
+  // Forecast: 178 actual HC × 144 hrs/HC × $15 ≈ $384,480/month
+  'gifthealth_sa_2026-04': { headcount: 178, hoursPerHead: 144, otHours: 0 },
+  'gifthealth_sa_2026-05': { headcount: 178, hoursPerHead: 144, otHours: 0 },
+  'gifthealth_sa_2026-06': { headcount: 178, hoursPerHead: 144, otHours: 0 },
+
+  // ── GiftHealth Lagos ($14/hr) ──────────────────────────────────────────────
+  // Billable HC: 94 agents | Actual HC: 117 agents + 9 TLs
+  // Mar invoice: 60 agents (4,800 hrs) + 6 TLs (480 hrs) @ $13.68 ≈ $72,230
+  // Note: only 66 of 117 actual HC were billing in March
+  'gifthealth_lagos_2026-01': { headcount: 66, totalHours: 4500, otHours: 0, revenue: 63000 },
+  'gifthealth_lagos_2026-02': { headcount: 66, totalHours: 5067, otHours: 0, revenue: 70937 },
+  'gifthealth_lagos_2026-03': { headcount: 66, totalHours: 5160, otHours: 0, revenue: 72230 },
+  // Forecast: 66 HC × 78 hrs/HC × $14 ≈ $72,072/month
+  'gifthealth_lagos_2026-04': { headcount: 66, hoursPerHead: 78, otHours: 0 },
+  'gifthealth_lagos_2026-05': { headcount: 66, hoursPerHead: 78, otHours: 0 },
+  'gifthealth_lagos_2026-06': { headcount: 66, hoursPerHead: 78, otHours: 0 },
 
   // ── Almedia ────────────────────────────────────────────────────────────────
   // Locked months: totalHours = actual agent hours delivered; revenue from invoice
